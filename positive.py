@@ -6,6 +6,7 @@ TUNINGS = [
     ('Andromeda', 'biased 11-limit POTE', 'pote_11', 1200.0000, 497.4904),
     ('Andromeda', 'biased 13-limit TE', 'te_13', 1200.4603, 497.4976),
     ('Andromeda', 'biased 13-limit POTE', 'pote_13', 1200.0000, 497.3069),
+    ('Pythagorean', 'high precision', '', 1200.0, 498.045),
     ]
 OCTAVE, FOURTH = 53, 22
 
