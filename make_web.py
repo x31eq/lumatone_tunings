@@ -25,10 +25,17 @@ for filename in glob('*.scl'):
     with open(os.path.join('web', filename), 'w') as dos_scl:
         dos_scl.write('\r\n'.join(lines) + '\r\n')
 
+params = {}
+for n_notes, files in files_by_period.items():
+    items = '\n'.join(
+        '    <li><a href="{}">{}</a></li>\n'
+            .format(filename, escape(description))
+        for filename, description in files)
+    section = '<ul>\n{}\n</ul>\n'.format(items)
+    params['tunings' + str(n_notes)] = section
+
+with open('template.html') as template:
+    markup = template.read()
+
 with open('web/tunings.html', 'w') as index:
-    for n_notes, files in files_by_period.items():
-        index.write('<h2>{} Notes</h2>\n<ul>\n'.format(n_notes))
-        for filename, description in files:
-            index.write('    <li><a href="{}">{}</a></li>\n'
-                        .format(filename, escape(description)))
-        index.write('</ul>\n')
+    index.write(markup.format(**params))
