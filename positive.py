@@ -5,10 +5,14 @@ TUNINGS = [
     ('Andromeda', 'biased 11-limit POTE', 'pote_11', 1200.0000, 497.4904),
     ('Andromeda', 'biased 13-limit TE', 'te_13', 1200.4603, 497.4976),
     ('Andromeda', 'biased 13-limit POTE', 'pote_13', 1200.0000, 497.3069),
+    ('Cassandra', '13-limit TE', 'te_13', 1200.1727, 497.9591),
+    ('Cassandra', '13-limit POTE', 'pote_13', 1200.0000, 497.8874),
     ('Garibaldi', '7-limit TE', 'te', 1200.1250, 497.9667),
     ('Garibaldi', '7-limit POTE', 'pote', 1200.0000, 497.9148),
     ('Helmholtz', '5-limit TE', 'te', 1200.0749, 498.2952),
     ('Helmholtz', '5-limit POTE', 'pote', 1200.0000, 498.2641),
+    ('Pontiac', '7-limit TE', 'te', 1200.0989, 498.2844),
+    ('Pontiac', '7-limit POTE', 'pote', 1200.0000, 498.2433),
     ('Pythagorean', 'high precision', '', 1200.0, 498.045),
     ]
 OCTAVE, FOURTH = 53, 22
