@@ -7,7 +7,7 @@ TUNINGS = [
     ('13-limit TE', 'te_13', 1200.4603, 497.4976),
     ('13-limit POTE', 'pote_13', 1200.0000, 497.3069),
     ]
-OCTAVE, FOURTH = 29, 12
+OCTAVE, FOURTH = 53, 22
 
 def get_scale(bottom, top, octave_cents, fourth_cents):
     pitches = []
@@ -50,9 +50,23 @@ if __name__ == '__main__':
                 out.write("%.3f\n" % pitch)
 
     for (tuning, label, octave, fourth) in TUNINGS:
-        filename = 'andromeda_29_d_' + label + '.scl'
+        filename = 'andromeda_41_d_' + label + '.scl'
         with open(filename, 'w') as out:
-            pitches = get_scale(-16, 12, octave, fourth)
+            pitches = get_scale(-22, 18, octave, fourth)
+            out.write("! " + filename + "\n")
+            out.write("!\n")
+            out.write(
+                    "andromeda on C with fourths symmetrically from D tuned to biased "
+                    + tuning + "\n")
+            out.write("%i\n" % len(pitches))
+            out.write("!\n")
+            for pitch in pitches:
+                out.write("%.3f\n" % pitch)
+
+    for (tuning, label, octave, fourth) in TUNINGS:
+        filename = 'andromeda_53_d_' + label + '.scl'
+        with open(filename, 'w') as out:
+            pitches = get_scale(-28, 24, octave, fourth)
             out.write("! " + filename + "\n")
             out.write("!\n")
             out.write(
