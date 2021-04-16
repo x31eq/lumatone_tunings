@@ -28,9 +28,10 @@ for filename in glob('*.scl'):
 params = {}
 for n_notes, files in files_by_period.items():
     items = '\n'.join(
-        '    <li><a href="{}">{}</a></li>\n'
-            .format(filename, escape(description))
-        for filename, description in files)
+        sorted(
+            '    <li><a href="{}">{}</a></li>\n'
+                .format(filename, escape(description))
+            for filename, description in files))
     section = '<ul>\n{}\n</ul>\n'.format(items)
     params['tunings' + str(n_notes)] = section
 
