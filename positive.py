@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # These really use the 2.3.10.14... limits
 TUNINGS = [
     ('11-limit TE', 'te_11', 1200.3191, 497.6227),
