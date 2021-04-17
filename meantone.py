@@ -24,7 +24,7 @@ def get_scale(bottom, top, octave_cents, fourth_cents):
 # -5 -4 -3 -2 -1  0  1  2  3  4  5  6  7  8  9  10 11 12 13
 
 if __name__ == '__main__':
-    for (tuning, octave, fourth) in TUNINGS:
+    for tuning, octave, fourth in TUNINGS:
         filename = 'meantone_19_d_' + tuning.lower() + '.scl'
         with open(filename, 'w') as out:
             pitches = get_scale(-11, 7, octave, fourth)

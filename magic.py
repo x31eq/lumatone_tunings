@@ -1,5 +1,7 @@
-TE = 1200.1435, 380.7419
-POTE = 1200.0000, 380.6964
+TUNINGS = [
+    ('11-limit TE', 'te', 1200.1435, 380.7419),
+    ('11-limit POTE', 'pote', 1200.0000, 380.6964),
+    ]
 OCTAVE, THIRD = 19, 6
 
 def get_scale(bottom, top, octave_cents, third_cents):
@@ -13,14 +15,14 @@ def get_scale(bottom, top, octave_cents, third_cents):
     return [p for _o, p in sorted(pitches)] + [octave_cents]
 
 if __name__ == '__main__':
-    for tuning, (octave, third) in ('TE', TE), ('POTE', POTE):
-        filename = 'pengcheng_countdown_' + tuning.lower() + '.scl'
+    for tuning, label, octave, third in TUNINGS:
+        filename = 'pengcheng_countdown_' + label + '.scl'
         with open(filename, 'w') as out:
             pitches = get_scale(-1, 17, octave, third)
             out.write("! " + filename + "\n")
             out.write("!\n")
             out.write(
-                    "magic on C from Ab to E# tuned to 11-limit "
+                    "magic on C from Ab to E# tuned to "
                     + tuning + "\n")
             out.write("%i\n" % len(pitches))
             out.write("!\n")
