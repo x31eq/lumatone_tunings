@@ -43,7 +43,7 @@ def get_scale(bottom, top, octave_cents, fourth_cents):
 #   19  20  21  22  23
 
 if __name__ == '__main__':
-    for (tclass, tuning, label, octave, fourth) in TUNINGS:
+    for tclass, tuning, label, octave, fourth in TUNINGS:
         filename = '{}_29_f_{}.scl'.format(
                 tclass.lower(), label)
         with open(filename, 'w') as out:
