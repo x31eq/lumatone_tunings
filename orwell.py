@@ -20,6 +20,21 @@ def get_scale(bottom, top, octave_cents, third_cents):
             pitches.append((ordinal, pitch))
     return [p for _o, p in sorted(pitches)] + [octave_cents]
 
+def write_tuning(prefix, comment, low, high, tuning, label, octave, third):
+    pitches = get_scale(low, high, octave, third)
+    if str(len(pitches)) == label:
+        # Trivial equal temperament: skip
+        return
+    filename = '{}_{}.scl'.format(prefix, label)
+    with open(filename, 'w') as out:
+        out.write("! " + filename + "\n")
+        out.write("!\n")
+        out.write("{} {}\n".format(comment, tuning))
+        out.write("%i\n" % len(pitches))
+        out.write("!\n")
+        for pitch in pitches:
+            out.write("%.3f\n" % pitch)
+
 #  D-----A-----E-----B
 #   \   / \   / \   / \
 #    \ /   \ /   \ /   \
@@ -31,17 +46,6 @@ def get_scale(bottom, top, octave_cents, third_cents):
 #    -7     0     7    14
 
 if __name__ == '__main__':
-    for tuning, label, octave, third in TUNINGS:
-        if label != '31':
-            filename = 'orwell_31_' + label + '.scl'
-            with open(filename, 'w') as out:
-                pitches = get_scale(-17, 13, octave, third)
-                out.write("! " + filename + "\n")
-                out.write("!\n")
-                out.write(
-                        "Orwell on C for C major with ii triad tuned to "
-                        + tuning + "\n")
-                out.write("%i\n" % len(pitches))
-                out.write("!\n")
-                for pitch in pitches:
-                    out.write("%.3f\n" % pitch)
+    for tuning in TUNINGS:
+        comment = "Orwell on C for C major with ii triad tuned to"
+        write_tuning('orwell_31', comment, -17, 13, *tuning)
