@@ -48,4 +48,13 @@ def write_tuning(prefix, comment, low, high, tuning, label, octave, third):
 if __name__ == '__main__':
     for tuning in TUNINGS:
         comment = "Orwell on C for C major with ii triad tuned to"
-        write_tuning('orwell_31', comment, -17, 13, *tuning)
+        write_tuning('orwell_31_c_ii', comment, -17, 13, *tuning)
+
+        comment = "Orwell on C for C major with V triad tuned to"
+        write_tuning('orwell_31_c_V', comment, -16, 14, *tuning)
+
+        comment = "Orwell on C without a major key"
+        write_tuning('orwell_22_c', comment, -12, 9, *tuning)
+
+        comment = "Orwell on C around C major"
+        write_tuning('orwell_53_c', comment, -27, 25, *tuning)
