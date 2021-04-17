@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 TUNINGS = [
-    ('TE', 1201.2422, 504.0263),
-    ('POTE', 1200.0000, 503.5051),
-    ('43', 1200.0000, 1200.0 * 18 / 43),
+    ('7-limit TE', 'te', 1201.2422, 504.0263),
+    ('7-limit POTE', 'pote', 1200.0000, 503.5051),
+    ('43-equal', '43', 1200.0000, 1200.0 * 18 / 43),
     ]
 OCTAVE, FOURTH = 19, 8
 
@@ -24,53 +24,53 @@ def get_scale(bottom, top, octave_cents, fourth_cents):
 # -5 -4 -3 -2 -1  0  1  2  3  4  5  6  7  8  9  10 11 12 13
 
 if __name__ == '__main__':
-    for tuning, octave, fourth in TUNINGS:
-        filename = 'meantone_19_d_' + tuning.lower() + '.scl'
+    for tuning, label, octave, fourth in TUNINGS:
+        filename = 'meantone_19_d_' + label + '.scl'
         with open(filename, 'w') as out:
             pitches = get_scale(-11, 7, octave, fourth)
             out.write("! " + filename + "\n")
             out.write("!\n")
             out.write(
-                    "meantone on C from Cb to E# tuned to 7-limit "
+                    "meantone on C from Cb to E# tuned to "
                     + tuning + "\n")
             out.write("%i\n" % len(pitches))
             out.write("!\n")
             for pitch in pitches:
                 out.write("%.3f\n" % pitch)
 
-        filename = 'meantone_19_a_' + tuning.lower() + '.scl'
+        filename = 'meantone_19_a_' + label + '.scl'
         with open(filename, 'w') as out:
             pitches = get_scale(-12, 6, octave, fourth)
             out.write("! " + filename + "\n")
             out.write("!\n")
             out.write(
-                    "meantone on C from Gb to B# tuned to 7-limit "
+                    "meantone on C from Gb to B# tuned to "
                     + tuning + "\n")
             out.write("%i\n" % len(pitches))
             out.write("!\n")
             for pitch in pitches:
                 out.write("%.3f\n" % pitch)
 
-        filename = 'meantone_19_g_' + tuning.lower() + '.scl'
+        filename = 'meantone_19_g_' + label + '.scl'
         with open(filename, 'w') as out:
             pitches = get_scale(-10, 8, octave, fourth)
             out.write("! " + filename + "\n")
             out.write("!\n")
             out.write(
-                    "meantone on C from Fb to A# tuned to 7-limit "
+                    "meantone on C from Fb to A# tuned to "
                     + tuning + "\n")
             out.write("%i\n" % len(pitches))
             out.write("!\n")
             for pitch in pitches:
                 out.write("%.3f\n" % pitch)
 
-        filename = 'meantone_31_d_' + tuning.lower() + '.scl'
+        filename = 'meantone_31_d_' + label + '.scl'
         with open(filename, 'w') as out:
             pitches = get_scale(-17, 13, octave, fourth)
             out.write("! " + filename + "\n")
             out.write("!\n")
             out.write(
-                    "meantone on C from Gbb to Ax tuned to 7-limit "
+                    "meantone on C from Gbb to Ax tuned to "
                     + tuning + "\n")
             out.write("%i\n" % len(pitches))
             out.write("!\n")
