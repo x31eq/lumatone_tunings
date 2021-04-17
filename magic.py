@@ -20,6 +20,21 @@ def get_scale(bottom, top, octave_cents, third_cents):
             pitches.append((ordinal, pitch))
     return [p for _o, p in sorted(pitches)] + [octave_cents]
 
+def write_tuning(prefix, comment, low, high, tuning, label, octave, third):
+    pitches = get_scale(low, high, octave, third)
+    if str(len(pitches)) == label:
+        # Trivial equal temperament: skip
+        return
+    filename = '{}_{}.scl'.format(prefix, label)
+    with open(filename, 'w') as out:
+        out.write("! " + filename + "\n")
+        out.write("!\n")
+        out.write("{} tuned to {}\n".format(comment, tuning))
+        out.write("%i\n" % len(pitches))
+        out.write("!\n")
+        for pitch in pitches:
+            out.write("%.3f\n" % pitch)
+
 #  D-----A-----E-----B-----F♯
 #   \   / \   / \   / \   / \
 #    \ /   \ /   \ /   \ /   \
@@ -31,115 +46,27 @@ def get_scale(bottom, top, octave_cents, third_cents):
 #    -5     0     5    10    15
 
 if __name__ == '__main__':
-    for tuning, label, octave, third in TUNINGS:
-        if label != '19':
-            filename = 'pengcheng_countdown_' + label + '.scl'
-            with open(filename, 'w') as out:
-                pitches = get_scale(-1, 17, octave, third)
-                out.write("! " + filename + "\n")
-                out.write("!\n")
-                out.write(
-                        "magic on C from Ab to E# tuned to "
-                        + tuning + "\n")
-                out.write("%i\n" % len(pitches))
-                out.write("!\n")
-                for pitch in pitches:
-                    out.write("%.3f\n" % pitch)
+    for tuning in TUNINGS:
+        comment = "Magic on C from Ab to E#"
+        write_tuning('pengcheng_countdown', comment, -1, 17, *tuning)
 
-        filename = 'pengcheng_giant_steps_' + label + '.scl'
-        if label != '19':
-            with open(filename, 'w') as out:
-                pitches = get_scale(-5, 13, octave, third)
-                out.write("! " + filename + "\n")
-                out.write("!\n")
-                out.write(
-                        "magic on C from F to Cx tuned to "
-                        + tuning + "\n")
-                out.write("%i\n" % len(pitches))
-                out.write("!\n")
-                for pitch in pitches:
-                    out.write("%.3f\n" % pitch)
+        comment = "Magic on C from F to Cx"
+        write_tuning('pengcheng_giant_steps', comment, -5 ,13, *tuning)
 
-        filename = 'pengcheng_c_ii_' + label + '.scl'
-        if label != '19':
-            with open(filename, 'w') as out:
-                pitches = get_scale(-9, 9, octave, third)
-                out.write("! " + filename + "\n")
-                out.write("!\n")
-                out.write(
-                        "magic on C for C major with ii triad tuned to "
-                        + tuning + "\n")
-                out.write("%i\n" % len(pitches))
-                out.write("!\n")
-                for pitch in pitches:
-                    out.write("%.3f\n" % pitch)
+        comment = "Magic on C for C major with ii triad"
+        write_tuning('pengcheng_c_ii', comment, -9, 9, *tuning)
 
-        filename = 'pengcheng_c_V_' + label + '.scl'
-        if label != '19':
-            with open(filename, 'w') as out:
-                pitches = get_scale(-8, 10, octave, third)
-                out.write("! " + filename + "\n")
-                out.write("!\n")
-                out.write(
-                        "magic on C for C major with V triad (ma grama) tuned to "
-                        + tuning + "\n")
-                out.write("%i\n" % len(pitches))
-                out.write("!\n")
-                for pitch in pitches:
-                    out.write("%.3f\n" % pitch)
+        comment = "Magic on C for C major with V triad (ma grama)"
+        write_tuning('pengcheng_c_V', comment, -8, 10, *tuning)
 
-        filename = 'pengcheng_g_ii_' + label + '.scl'
-        if label != '19':
-            with open(filename, 'w') as out:
-                pitches = get_scale(-4, 14, octave, third)
-                out.write("! " + filename + "\n")
-                out.write("!\n")
-                out.write(
-                        "magic on C for G major with ii triad tuned to "
-                        + tuning + "\n")
-                out.write("%i\n" % len(pitches))
-                out.write("!\n")
-                for pitch in pitches:
-                    out.write("%.3f\n" % pitch)
+        comment = "Magic on C for G major with ii triad",
+        write_tuning('pengcheng_g_ii', comment, -4, 14, *tuning)
 
-        filename = 'pengcheng_g_V_' + label + '.scl'
-        if label != '19':
-            with open(filename, 'w') as out:
-                pitches = get_scale(-3, 15, octave, third)
-                out.write("! " + filename + "\n")
-                out.write("!\n")
-                out.write(
-                        "magic on C for G major with V triad (ma grama) tuned to "
-                        + tuning + "\n")
-                out.write("%i\n" % len(pitches))
-                out.write("!\n")
-                for pitch in pitches:
-                    out.write("%.3f\n" % pitch)
+        comment = "Magic on C for G major with V triad (ma grama)"
+        write_tuning('pengcheng_g_V', comment, -3, 15, *tuning)
 
-        filename = 'haizhou_c_' + label + '.scl'
-        if label != '22':
-            with open(filename, 'w') as out:
-                pitches = get_scale(-10, 11, octave, third)
-                out.write("! " + filename + "\n")
-                out.write("!\n")
-                out.write(
-                        "magic on C for C major tuned to "
-                        + tuning + "\n")
-                out.write("%i\n" % len(pitches))
-                out.write("!\n")
-                for pitch in pitches:
-                    out.write("%.3f\n" % pitch)
+        comment = "Magic on C for C major"
+        write_tuning('haizhou_c', comment, -10, 11, *tuning)
 
-        filename = 'haizhou_g_' + label + '.scl'
-        if label != '22':
-            with open(filename, 'w') as out:
-                pitches = get_scale(-5, 16, octave, third)
-                out.write("! " + filename + "\n")
-                out.write("!\n")
-                out.write(
-                        "magic on C for G major tuned to "
-                        + tuning + "\n")
-                out.write("%i\n" % len(pitches))
-                out.write("!\n")
-                for pitch in pitches:
-                    out.write("%.3f\n" % pitch)
+        comment = "Magic on C for G major"
+        write_tuning('haizhou_g', comment, -5, 16, *tuning)

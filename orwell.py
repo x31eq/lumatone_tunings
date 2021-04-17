@@ -29,7 +29,7 @@ def write_tuning(prefix, comment, low, high, tuning, label, octave, third):
     with open(filename, 'w') as out:
         out.write("! " + filename + "\n")
         out.write("!\n")
-        out.write("{} {}\n".format(comment, tuning))
+        out.write("{} tuned to {}\n".format(comment, tuning))
         out.write("%i\n" % len(pitches))
         out.write("!\n")
         for pitch in pitches:
@@ -47,10 +47,10 @@ def write_tuning(prefix, comment, low, high, tuning, label, octave, third):
 
 if __name__ == '__main__':
     for tuning in TUNINGS:
-        comment = "Orwell on C for C major with ii triad tuned to"
+        comment = "Orwell on C for C major with ii triad"
         write_tuning('orwell_31_c_ii', comment, -17, 13, *tuning)
 
-        comment = "Orwell on C for C major with V triad tuned to"
+        comment = "Orwell on C for C major with V triad"
         write_tuning('orwell_31_c_V', comment, -16, 14, *tuning)
 
         comment = "Orwell on C without a major key"
