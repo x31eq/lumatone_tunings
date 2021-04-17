@@ -106,3 +106,51 @@ if __name__ == '__main__':
             out.write("!\n")
             for pitch in pitches:
                 out.write("%.3f\n" % pitch)
+
+    for (tclass, tuning, label, octave, fourth) in TUNINGS:
+        filename = '{}_29_a_{}.scl'.format(
+                tclass.lower(), label)
+        with open(filename, 'w') as out:
+            pitches = get_scale(-15, 13, octave, fourth)
+            out.write("! " + filename + "\n")
+            out.write("!\n")
+            out.write(
+                    tclass
+                    + " on C with fourths symmetrically from A tuned to "
+                    + tuning + "\n")
+            out.write("%i\n" % len(pitches))
+            out.write("!\n")
+            for pitch in pitches:
+                out.write("%.3f\n" % pitch)
+
+    for (tclass, tuning, label, octave, fourth) in TUNINGS:
+        filename = '{}_41_a_{}.scl'.format(
+                tclass.lower(), label)
+        with open(filename, 'w') as out:
+            pitches = get_scale(-21, 19, octave, fourth)
+            out.write("! " + filename + "\n")
+            out.write("!\n")
+            out.write(
+                    tclass
+                    + " on C with fourths symmetrically from A tuned to "
+                    + tuning + "\n")
+            out.write("%i\n" % len(pitches))
+            out.write("!\n")
+            for pitch in pitches:
+                out.write("%.3f\n" % pitch)
+
+    for (tclass, tuning, label, octave, fourth) in TUNINGS:
+        filename = '{}_53_a_{}.scl'.format(
+                tclass.lower(), label)
+        with open(filename, 'w') as out:
+            pitches = get_scale(-27, 25, octave, fourth)
+            out.write("! " + filename + "\n")
+            out.write("!\n")
+            out.write(
+                    tclass
+                    + " on C with fourths symmetrically from A tuned to "
+                    + tuning + "\n")
+            out.write("%i\n" % len(pitches))
+            out.write("!\n")
+            for pitch in pitches:
+                out.write("%.3f\n" % pitch)
