@@ -1,6 +1,10 @@
 TUNINGS = [
     ('11-limit TE', 'te', 1200.1435, 380.7419),
     ('11-limit POTE', 'pote', 1200.0000, 380.6964),
+    ('19-equal', '19', 1200.0, 12e2 * 6 / 19),
+    ('22-equal', '22', 1200.0, 12e2 * 7 / 22),
+    ('41-equal', '41', 1200.0, 12e2 * 13 / 41),
+    ('60-equal', '60', 1200.0, 12e2 * 19 / 60),
     ]
 OCTAVE, THIRD = 19, 6
 
@@ -29,7 +33,7 @@ if __name__ == '__main__':
             for pitch in pitches:
                 out.write("%.3f\n" % pitch)
 
-        filename = 'pengcheng_giant_steps_' + tuning.lower() + '.scl'
+        filename = 'pengcheng_giant_steps_' + label + '.scl'
         with open(filename, 'w') as out:
             pitches = get_scale(-5, 13, octave, third)
             out.write("! " + filename + "\n")
