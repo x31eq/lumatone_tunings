@@ -27,6 +27,20 @@ def get_scale(bottom, top, octave_cents, fourth_cents):
             pitches.append((ordinal, pitch))
     return [p for _o, p in sorted(pitches)] + [octave_cents]
 
+def augment_scale(pitches):
+    """
+    Make the scale transposable by 2 octaves all within 63 steps
+    """
+    octave_steps = len(pitches)
+    octave_pitch = pitches[-1]
+    extra_notes = 62 - octave_steps
+    extra_treble = extra_notes // 2
+    extra_bass = extra_notes - extra_treble
+    new_pitches = [octave_pitch + pitch for pitch in pitches[:extra_treble]]
+    new_pitches += [octave_pitch + pitch for pitch in pitches[-extra_bass-1:-1]]
+    assert len(new_pitches) == extra_notes
+    return pitches + new_pitches + [octave_pitch * 2]
+
 #   B/  E/  A/  D/  G/  C/  F/
 #  -17 -16 -15 -14 -13 -12 -11
 
@@ -144,6 +158,22 @@ if __name__ == '__main__':
                 tclass.lower(), label)
         with open(filename, 'w') as out:
             pitches = get_scale(-27, 25, octave, fourth)
+            out.write("! " + filename + "\n")
+            out.write("!\n")
+            out.write(
+                    tclass
+                    + " on C with fourths symmetrically from A tuned to "
+                    + tuning + "\n")
+            out.write("%i\n" % len(pitches))
+            out.write("!\n")
+            for pitch in pitches:
+                out.write("%.3f\n" % pitch)
+
+    for (tclass, tuning, label, octave, fourth) in TUNINGS:
+        filename = '{}_53_a_{}_zyn_hack.scl'.format(
+                tclass.lower(), label)
+        with open(filename, 'w') as out:
+            pitches = augment_scale(get_scale(-27, 25, octave, fourth))
             out.write("! " + filename + "\n")
             out.write("!\n")
             out.write(
