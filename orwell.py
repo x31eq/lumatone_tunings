@@ -53,6 +53,9 @@ if __name__ == '__main__':
         comment = "Orwell on C for C major with V triad"
         write_tuning('orwell_31_c_V', comment, -16, 14, *tuning)
 
+        comment = "Orwell with equal generators up and down"
+        write_tuning('orwell_31_symmetric', comment, -15, 15, *tuning)
+
         comment = "Orwell on C without a major key"
         write_tuning('orwell_22_c', comment, -12, 9, *tuning)
 
