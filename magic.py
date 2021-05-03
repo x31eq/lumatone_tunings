@@ -8,15 +8,15 @@ TUNINGS = [
     ('41-equal', '41', 1200.0, 12e2 * 13 / 41),
     ('60-equal', '60', 1200.0, 12e2 * 19 / 60),
     ]
-OCTAVE, THIRD = 19, 6
+OCTAVE, THIRD = 41, 13
 
 def get_scale(bottom, top, octave_cents, third_cents):
     pitches = []
     for third in range(bottom, top+1):
-        octave = (third * THIRD) // OCTAVE
-        pitch = third * third_cents - octave * octave_cents
-        ordinal = third * THIRD - octave * OCTAVE
-        if ordinal:
+        if third:
+            octave = (third * THIRD) // OCTAVE
+            pitch = third * third_cents - octave * octave_cents
+            ordinal = third * THIRD - octave * OCTAVE
             pitches.append((ordinal, pitch))
     return [p for _o, p in sorted(pitches)] + [octave_cents]
 
@@ -70,3 +70,6 @@ if __name__ == '__main__':
 
         comment = "Magic on C for G major"
         write_tuning('haizhou_g', comment, -5, 16, *tuning)
+
+        comment = "Magic symmetrical about the tonic"
+        write_tuning('changan_c', comment, -20, 20, *tuning)
