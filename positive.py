@@ -73,7 +73,6 @@ if __name__ == '__main__':
             for pitch in pitches:
                 out.write("%.3f\n" % pitch)
 
-    for (tclass, tuning, label, octave, fourth) in TUNINGS:
         filename = '{}_29_d_{}.scl'.format(
                 tclass.lower(), label)
         with open(filename, 'w') as out:
@@ -89,7 +88,6 @@ if __name__ == '__main__':
             for pitch in pitches:
                 out.write("%.3f\n" % pitch)
 
-    for (tclass, tuning, label, octave, fourth) in TUNINGS:
         filename = '{}_41_d_{}.scl'.format(
                 tclass.lower(), label)
         with open(filename, 'w') as out:
@@ -105,7 +103,6 @@ if __name__ == '__main__':
             for pitch in pitches:
                 out.write("%.3f\n" % pitch)
 
-    for (tclass, tuning, label, octave, fourth) in TUNINGS:
         filename = '{}_53_d_{}.scl'.format(
                 tclass.lower(), label)
         with open(filename, 'w') as out:
@@ -121,7 +118,6 @@ if __name__ == '__main__':
             for pitch in pitches:
                 out.write("%.3f\n" % pitch)
 
-    for (tclass, tuning, label, octave, fourth) in TUNINGS:
         filename = '{}_29_a_{}.scl'.format(
                 tclass.lower(), label)
         with open(filename, 'w') as out:
@@ -137,7 +133,6 @@ if __name__ == '__main__':
             for pitch in pitches:
                 out.write("%.3f\n" % pitch)
 
-    for (tclass, tuning, label, octave, fourth) in TUNINGS:
         filename = '{}_41_a_{}.scl'.format(
                 tclass.lower(), label)
         with open(filename, 'w') as out:
@@ -153,7 +148,6 @@ if __name__ == '__main__':
             for pitch in pitches:
                 out.write("%.3f\n" % pitch)
 
-    for (tclass, tuning, label, octave, fourth) in TUNINGS:
         filename = '{}_53_a_{}.scl'.format(
                 tclass.lower(), label)
         with open(filename, 'w') as out:
@@ -169,7 +163,6 @@ if __name__ == '__main__':
             for pitch in pitches:
                 out.write("%.3f\n" % pitch)
 
-    for (tclass, tuning, label, octave, fourth) in TUNINGS:
         filename = '{}_53_a_{}_zyn_hack.scl'.format(
                 tclass.lower(), label)
         with open(filename, 'w') as out:
