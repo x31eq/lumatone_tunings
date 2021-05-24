@@ -88,6 +88,21 @@ if __name__ == '__main__':
             for pitch in pitches:
                 out.write("%.3f\n" % pitch)
 
+        filename = '{}_29_flats_{}.scl'.format(
+                tclass.lower(), label)
+        with open(filename, 'w') as out:
+            pitches = get_scale(-5, 23, octave, fourth)
+            out.write("! " + filename + "\n")
+            out.write("!\n")
+            out.write(
+                    tclass
+                    + " on C with no sharps "
+                    + tuning + "\n")
+            out.write("%i\n" % len(pitches))
+            out.write("!\n")
+            for pitch in pitches:
+                out.write("%.3f\n" % pitch)
+
         filename = '{}_41_d_{}.scl'.format(
                 tclass.lower(), label)
         with open(filename, 'w') as out:
