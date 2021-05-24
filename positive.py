@@ -61,12 +61,12 @@ if __name__ == '__main__':
         filename = '{}_29_f_{}.scl'.format(
                 tclass.lower(), label)
         with open(filename, 'w') as out:
-            pitches = get_scale(-5, 23, octave, fourth)
+            pitches = get_scale(-23, 5, octave, fourth)
             out.write("! " + filename + "\n")
             out.write("!\n")
             out.write(
                     tclass
-                    + " on C with fourths from Pythagorean F tuned to "
+                    + " on C with fifths from Pythagorean F tuned to "
                     + tuning + "\n")
             out.write("%i\n" % len(pitches))
             out.write("!\n")
