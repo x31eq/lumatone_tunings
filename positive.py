@@ -61,7 +61,7 @@ if __name__ == '__main__':
         filename = '{}_29_f_{}.scl'.format(
                 tclass.lower(), label)
         with open(filename, 'w') as out:
-            pitches = get_scale(-23, 5, octave, fourth)
+            pitches = get_scale(-27, 1, octave, fourth)
             out.write("! " + filename + "\n")
             out.write("!\n")
             out.write(
