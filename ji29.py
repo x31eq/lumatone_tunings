@@ -22,5 +22,10 @@ gamut.append(Fraction(4, 3) * 13/12)  # Pythogorean F♯
 
 gamut.sort()
 
-for pitch in gamut:
-    print(str(pitch))
+with open('ji29.scl', 'w') as out:
+    out.write("! ji29.scl\n!\n")
+    out.write("13-limit JI tuning for a 29 note Bosanquet\n")
+    out.write("29\n!\n")
+    for pitch in gamut[1:]:
+        out.write(str(pitch) + "\n")
+    out.write("2/1\n")
