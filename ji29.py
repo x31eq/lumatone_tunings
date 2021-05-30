@@ -1,25 +1,38 @@
 #!/usr/bin/env python3
 
 from fractions import Fraction
+from math import log2
 
-diatonic = '1/1 9/8 81/64 4/3 3/2 27/16 243/128'
+octave = 29
+diatonic = '1/1 9/8 81/64 4/3 3/2 27/16 16/9'
 comma = Fraction(352, 351)
 
-gamut = []
+gamut = [None] * octave
+
+def scale_steps(pitch):
+    return int(round(log2(pitch) * octave))
 
 for pitch in map(Fraction, diatonic.split()):
+    pitch_steps = scale_steps(pitch)
     for tonic in map(Fraction, '1/1 15/16 7/8 13/16'.split()):
         new_pitch = pitch * tonic
-        while new_pitch < 1:
+        new_steps = pitch_steps + scale_steps(tonic)
+        while new_steps < 0:
+            new_steps += octave
             new_pitch *= 2
-        while new_pitch >= 2:
+        while new_steps >= octave:
+            new_steps -= octave
             new_pitch /= 2
         alternative_pitch = new_pitch * comma
         if (tonic.numerator == 13
                 and alternative_pitch.denominator < new_pitch.denominator):
             new_pitch = alternative_pitch
-        gamut.append(new_pitch)
-gamut.append(Fraction(4, 3) * 13/12)  # Pythagorean F♯
+        assert gamut[new_steps] is None
+        gamut[new_steps] = new_pitch
+
+b_natural = Fraction(243, 128)
+assert gamut[scale_steps(b_natural)] is None
+gamut[scale_steps(b_natural)] = b_natural
 
 gamut.sort()
 
