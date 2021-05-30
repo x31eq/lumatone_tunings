@@ -26,7 +26,8 @@ for pitch in map(Fraction, chord.split()):
         if old_pitch is None:
             gamut[new_steps] = new_pitch
         elif new_pitch != old_pitch:
-            print("Discrepancy: {}, {}".format(new_pitch, old_pitch))
+            print("Discrepancy: {} ≠ {}, comma {}".format(
+                new_pitch, old_pitch, new_pitch / old_pitch))
             if new_pitch.denominator < old_pitch.denominator:
                 gamut[new_steps] = new_pitch
 
