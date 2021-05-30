@@ -2,13 +2,12 @@
 
 from fractions import Fraction
 
-diatonic = [Fraction(x) for x in
-        '1/1 9/8 81/64 4/3 3/2 27/16 243/128'.split()]
+diatonic = '1/1 9/8 81/64 4/3 3/2 27/16 243/128'
 comma = Fraction(352, 351)
 
 gamut = []
 
-for pitch in diatonic:
+for pitch in map(Fraction, diatonic.split()):
     for tonic in map(Fraction, '1/1 15/16 7/8 13/16'.split()):
         new_pitch = pitch * tonic
         while new_pitch < 1:
@@ -20,7 +19,7 @@ for pitch in diatonic:
                 and alternative_pitch.denominator < new_pitch.denominator):
             new_pitch = alternative_pitch
         gamut.append(new_pitch)
-gamut.append(Fraction(4, 3) * 13/12)  # Pythogorean F♯
+gamut.append(Fraction(4, 3) * 13/12)  # Pythagorean F♯
 
 gamut.sort()
 
