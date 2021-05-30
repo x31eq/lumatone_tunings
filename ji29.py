@@ -5,7 +5,6 @@ from math import log2
 
 octave = 29
 chord = '1/1 9/8 5/4 11/8 3/2 13/8 7/4 15/8'
-comma = Fraction(352, 351)
 
 gamut = [None] * octave
 
@@ -31,21 +30,9 @@ for pitch in map(Fraction, chord.split()):
             if new_pitch.denominator < old_pitch.denominator:
                 gamut[new_steps] = new_pitch
 
-
-for pitch in map(Fraction, '1/1 9/8 81/64 4/3 3/2 27/16'.split()):
-    pitch_steps = scale_steps(pitch)
-    for tonic in map(Fraction, '1/1 15/16 7/8 13/16'.split()):
-        new_pitch = pitch * tonic
-        new_steps = pitch_steps + scale_steps(tonic)
-        while new_steps < 0:
-            new_steps += octave
-            new_pitch *= 2
-        while new_steps >= octave:
-            new_steps -= octave
-            new_pitch /= 2
-        if gamut[new_steps] is None:
-            print("New pitch needed: {}".format(new_pitch))
-            gamut[new_steps] = new_pitch
+# One pitch is missing!
+assert gamut[7] is None
+gamut[7] = Fraction(1215, 1024)
 
 gamut.sort()
 
