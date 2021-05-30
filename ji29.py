@@ -9,13 +9,15 @@ comma = Fraction(352, 351)
 gamut = []
 
 for pitch in diatonic:
-    for new_pitch in pitch, pitch * 15/16, pitch * 7/8, pitch * 13/16:
+    for tonic in map(Fraction, '1/1 15/16 7/8 13/16'.split()):
+        new_pitch = pitch * tonic
         while new_pitch < 1:
             new_pitch *= 2
         while new_pitch >= 2:
             new_pitch /= 2
         alternative_pitch = new_pitch * comma
-        if alternative_pitch.denominator < new_pitch.denominator:
+        if (tonic.numerator == 13
+                and alternative_pitch.denominator < new_pitch.denominator):
             new_pitch = alternative_pitch
         gamut.append(new_pitch)
 gamut.append(Fraction(4, 3) * 13/12)  # Pythogorean F♯
