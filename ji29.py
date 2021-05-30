@@ -11,11 +11,10 @@ gamut = [None] * octave
 def scale_steps(pitch):
     return int(round(log2(pitch) * octave))
 
-for pitch in map(Fraction, chord.split()):
-    pitch_steps = scale_steps(pitch)
-    for tonic in map(Fraction, '1/1 9/8 4/3 3/2 27/16 16/9'.split()):
+for tonic in map(Fraction, '1/1 4/3 3/2 9/8 27/16 16/9'.split()):
+    for pitch in map(Fraction, chord.split()):
         new_pitch = pitch * tonic
-        new_steps = pitch_steps + scale_steps(tonic)
+        new_steps = scale_steps(pitch) + scale_steps(tonic)
         while new_steps < 0:
             new_steps += octave
             new_pitch *= 2
@@ -28,8 +27,6 @@ for pitch in map(Fraction, chord.split()):
         elif new_pitch != old_pitch:
             print("Discrepancy: {} ≠ {}, comma {}".format(
                 new_pitch, old_pitch, new_pitch / old_pitch))
-            if new_pitch.denominator < old_pitch.denominator:
-                gamut[new_steps] = new_pitch
 
 # One pitch is missing!
 assert gamut[7] is None
