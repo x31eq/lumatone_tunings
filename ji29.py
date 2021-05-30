@@ -4,7 +4,6 @@ from fractions import Fraction
 from math import log2
 
 octave = 29
-diatonic = '1/1 9/8 81/64 4/3 3/2 27/16 16/9'
 chord = '1/1 9/8 5/4 11/8 3/2 13/8 7/4 15/8'
 comma = Fraction(352, 351)
 
@@ -15,7 +14,7 @@ def scale_steps(pitch):
 
 for pitch in map(Fraction, chord.split()):
     pitch_steps = scale_steps(pitch)
-    for tonic in map(Fraction, '1/1 9/8 4/3 3/2 27/16'.split()):
+    for tonic in map(Fraction, '1/1 9/8 4/3 3/2 27/16 16/9'.split()):
         new_pitch = pitch * tonic
         new_steps = pitch_steps + scale_steps(tonic)
         while new_steps < 0:
@@ -33,7 +32,7 @@ for pitch in map(Fraction, chord.split()):
                 gamut[new_steps] = new_pitch
 
 
-for pitch in map(Fraction, diatonic.split()):
+for pitch in map(Fraction, '1/1 9/8 81/64 4/3 3/2 27/16'.split()):
     pitch_steps = scale_steps(pitch)
     for tonic in map(Fraction, '1/1 15/16 7/8 13/16'.split()):
         new_pitch = pitch * tonic
