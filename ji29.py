@@ -32,8 +32,6 @@ for tonic in map(Fraction, '1/1 4/3 3/2 9/8 27/16 16/9'.split()):
 assert gamut[7] is None
 gamut[7] = Fraction(1215, 1024)
 
-gamut.sort()
-
 with open('ji29.scl', 'w') as out:
     out.write("! ji29.scl\n!\n")
     out.write("13-limit JI tuning for a 29 note Bosanquet\n")
